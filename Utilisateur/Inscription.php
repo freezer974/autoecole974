@@ -35,7 +35,7 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Role</label>
                     </div>
-                <select class="custom-select" name="id" id="id" required>
+                <select class="custom-select" name="id_role" id="id_role" required>
 
                     <!-- Récupération de l'ID dans la table roles -->
                     <?php $role = $bdd->query('SELECT * FROM roles');
