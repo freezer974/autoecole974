@@ -12,7 +12,7 @@
             htmlspecialchars( $_POST['prenom']), 
             htmlspecialchars( $_POST['mail']), 
             htmlspecialchars( $pass_hache), 
-            htmlspecialchars( $_POST['id_role']));
+            htmlspecialchars( $_POST['id_role'])));
 
         //redirection du visiteur vers la page de voir_utilisateurs
         echo "<p>Bienvenue dans l'équipage de  l'Auto-Ecole 974 votre compte a été crée avec succés. <p>";

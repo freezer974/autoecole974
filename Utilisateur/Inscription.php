@@ -10,8 +10,8 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Nom et Prénom :</span>
                 </div>
-                <input type="mail" class="form-control" name="password" placeholder="" required>
-                <input type="mail" class="form-control" name="password" placeholder="" required>
+                <input type="mail" class="form-control" name="nom" placeholder="" required>
+                <input type="mail" class="form-control" name="prenom" placeholder="" required>
             </div>
 
             <div class="input-group mb-3">
@@ -19,7 +19,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">E-mail :</span>
                 </div>
-                    <input type="mail" class="form-control" name="password" placeholder="" required>
+                    <input type="mail" class="form-control" name="mail" placeholder="" required>
             </div>
 
             <div class="input-group mb-3">
