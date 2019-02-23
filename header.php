@@ -76,7 +76,7 @@
                 <a class="nav-link" href="#">Login <?= (($menu == 'login')? '<span class="sr-only">(current)</span>' : ''); ?></a>
             </li>
             <li class="nav-item <?= (($menu == 'inscription')? 'active' : ''); ?>">
-                <a class="nav-link" href="/utilisateur/Inscription.php">Inscription <?= (($menu == 'inscription')? '<span class="sr-only">(current)</span>' : ''); ?></a>
+                <a class="nav-link" href="/Utilisateur/Inscription.php">Inscription <?= (($menu == 'inscription')? '<span class="sr-only">(current)</span>' : ''); ?></a>
             </li>
         </ul>
         <?php endif; ?>
