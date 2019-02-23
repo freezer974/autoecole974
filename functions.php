@@ -45,7 +45,8 @@ function flash( $name = '', $message = '', $class = 'success fadeout-message' )
 }
 
 function ChaineAvecMajuscule($titre){
-    return ucfirst(strtolower($titre));
+
+    return ucfirst(strtolower(htmlentities($titre)));
 }
 
 function delete($bdd, $table, $entity, $id){
