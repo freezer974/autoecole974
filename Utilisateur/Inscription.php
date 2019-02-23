@@ -27,7 +27,14 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Mot de passe :</span>
                 </div>
-                    <input type="password" class="form-control" name="password" placeholder="" required>
+                    <input type="password" class="form-control" name="password1" placeholder="" required>
+            </div>
+            <div class="input-group mb-3">
+
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Reconfirmez votre mot de passe :</span>
+            </div>
+                <input type="password" class="form-control" name="password2" placeholder="" required>
             </div>
             
             <div class="input-group mb-3">
