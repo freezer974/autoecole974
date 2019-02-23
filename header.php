@@ -47,14 +47,14 @@
         </li>
         <?php if ($_SESSION['role'] == 'Admin'): ?>
             <li class="nav-item <?= (($menu == 'roles')? 'active' : ''); ?>" >
-                <a class="nav-link" href="/roles">Rôles <?= (($menu == 'roles')? '<span class="sr-only">(current)</span>' : ''); ?></a>
+                <a class="nav-link" href="#">Rôles <?= (($menu == 'roles')? '<span class="sr-only">(current)</span>' : ''); ?></a>
             </li>
             <li class="nav-item <?= (($menu == 'utilisateurs')? 'active' : ''); ?>" >
-                <a class="nav-link" href="/utilisateurs">Utilisateurs <?= (($menu == 'utilisateurs')? '<span class="sr-only">(current)</span>' : ''); ?></a>
+                <a class="nav-link" href="#">Utilisateurs <?= (($menu == 'utilisateurs')? '<span class="sr-only">(current)</span>' : ''); ?></a>
             </li>
         <?php endif;?>
         <li class="nav-item <?= (($menu == 'cours')? 'active' : ''); ?>" >
-                <a class="nav-link" href="/cours">cours <?= (($menu == 'cours')? '<span class="sr-only">(current)</span>' : ''); ?></a>
+                <a class="nav-link" href="/cours">Planning <?= (($menu == 'cours')? '<span class="sr-only">(current)</span>' : ''); ?></a>
             </li>
         <li class="nav-item <?= (($menu == 'ambulances')? 'active' : ''); ?>" >
             <a class="nav-link" href="/ambulances">Planning <?= (($menu == 'ambulances')? '<span class="sr-only">(current)</span>' : ''); ?></a>
@@ -64,10 +64,10 @@
         <?php if (!empty($_SESSION['id'])): ?>
             <ul class="navbar-nav ml-md-auto">
                 <li class="nav-item <?= (($menu == 'profil')? 'active' : ''); ?>">
-                    <a class="nav-link" href="/utilisateurs/modifier_utilisateur.php?id=<?= $_SESSION['id']; ?>"><?= $_SESSION['nom']; ?> <span class="font-italic small">(<?= $_SESSION['role']; ?>)</span></a>
+                    <a class="nav-link" href="#"><?= $_SESSION['nom']; ?> <span class="font-italic small">(<?= $_SESSION['role']; ?>)</span></a>
                 </li>
                 <li class="nav-item <?= (($menu == 'deconnexion')? 'active' : ''); ?>">
-                    <form class="form-inline my-2 my-lg-0" action="/utilisateurs/action_utilisateur.php" method="POST">
+                    <form class="form-inline my-2 my-lg-0" action="#" method="POST">
                         <input type="hidden" value='deconnexion' name='action'>
                         <button type="submit" class="btn btn-secondary">Deconnexion</button>
                     </form>
@@ -76,10 +76,10 @@
         <?php else: ?>
         <ul class="navbar-nav ml-md-auto">
             <li class="nav-item <?= (($menu == 'login')? 'active' : ''); ?>">
-                <a class="nav-link" href="/utilisateurs/connexion_utilisateur.php">Login <?= (($menu == 'login')? '<span class="sr-only">(current)</span>' : ''); ?></a>
+                <a class="nav-link" href="#">Login <?= (($menu == 'login')? '<span class="sr-only">(current)</span>' : ''); ?></a>
             </li>
             <li class="nav-item <?= (($menu == 'inscription')? 'active' : ''); ?>">
-                <a class="nav-link" href="/utilisateurs/ajout_utilisateur.php">Inscription <?= (($menu == 'inscription')? '<span class="sr-only">(current)</span>' : ''); ?></a>
+                <a class="nav-link" href="/utilisateurs/Inscription.php">Inscription <?= (($menu == 'inscription')? '<span class="sr-only">(current)</span>' : ''); ?></a>
             </li>
         </ul>
         <?php endif; ?>

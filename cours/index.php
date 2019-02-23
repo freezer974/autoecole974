@@ -5,13 +5,6 @@
     require_once('../connexion_bdd.php');
 
     $roles = array('Admin', 'Eleve', 'Moniteur');
-        // a supprimer lorsque la conneion est possible
-        $_SESSION['role'] = 'Moniteur';
-        $_SESSION['nom'] = 'NomM1';
-        $_SESSION['email'] = 'email1';
-        $_SESSION['id'] = '2';
-        // jusqu'ici
-
         $semaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
         $horaire = ['7h-8h', '8h-9h', '9h-10h', '10h-11h', '11h-12h', '13h-14h','14h-15h', '15h-16h'];
 
