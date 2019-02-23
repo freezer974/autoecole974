@@ -3,7 +3,7 @@
         /*info pour la base de donnée local */
 
         $hostname = 'localhost';
-        $database = 'bobo';
+        $database = 'autoecole974';
         $username = 'root';
         $password = 'root';
     else:
