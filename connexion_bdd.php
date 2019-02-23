@@ -1,11 +1,11 @@
 <?php
-    if ($_SERVER['HTTP_HOST'] == 'localhost'):
+    if ($_SERVER['HTTP_HOST'] == 'localhost:8888'):
         /*info pour la base de donnée local */
 
         $hostname = 'localhost';
         $database = 'autoecole974';
         $username = 'root';
-        $password = '';
+        $password = 'root';
     else:
         /*info pour la base de donnée heroku */
 

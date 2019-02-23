@@ -11,9 +11,11 @@
         $requete = $bdd->prepare('SELECT * FROM voitures');
         $requete->execute();
         $voitures = $requete->fetchAll();
+    $_SESSION['id'] = '';
+       
 ?>
 
-    <?php if (!empty($_SESSION['id']) && !empty($_SESSION['email']) && !empty($_SESSION['role'])): ?>
+    <?php /*if (!empty($_SESSION['id']) && !empty($_SESSION['email']) && !empty($_SESSION['role'])):*/ ?>
 
             <div class="col">
                 <h1>Planning de gestion des cours</h1>
@@ -162,9 +164,9 @@
                 <?php endfor; ?>
             </div>
                     
-        <?php else: ?>
+        <?php /* else: ?>
             <span class="text-muted">Vous devez être connecté pour voir le planning</span>
-        <?php endif; ?>
+        <?php endif; */?>
 
         <div class="modal fade" id="ajoutModal" tabindex="-1" role="dialog" aria-labelledby="ajoutModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -277,7 +279,6 @@
                 </div>
             </div>
         </div>
-
  <?php
     require_once('../footer.php');
 ?>

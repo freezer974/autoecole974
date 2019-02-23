@@ -56,9 +56,6 @@
         <li class="nav-item <?= (($menu == 'cours')? 'active' : ''); ?>" >
                 <a class="nav-link" href="/cours">Planning <?= (($menu == 'cours')? '<span class="sr-only">(current)</span>' : ''); ?></a>
             </li>
-        <li class="nav-item <?= (($menu == 'ambulances')? 'active' : ''); ?>" >
-            <a class="nav-link" href="/ambulances">Planning <?= (($menu == 'ambulances')? '<span class="sr-only">(current)</span>' : ''); ?></a>
-        </li>
         </ul>
 
         <?php if (!empty($_SESSION['id'])): ?>
@@ -79,7 +76,7 @@
                 <a class="nav-link" href="#">Login <?= (($menu == 'login')? '<span class="sr-only">(current)</span>' : ''); ?></a>
             </li>
             <li class="nav-item <?= (($menu == 'inscription')? 'active' : ''); ?>">
-                <a class="nav-link" href="/utilisateurs/Inscription.php">Inscription <?= (($menu == 'inscription')? '<span class="sr-only">(current)</span>' : ''); ?></a>
+                <a class="nav-link" href="/utilisateur/Inscription.php">Inscription <?= (($menu == 'inscription')? '<span class="sr-only">(current)</span>' : ''); ?></a>
             </li>
         </ul>
         <?php endif; ?>

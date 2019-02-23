@@ -161,6 +161,24 @@
             endif;
         endif;
     endif;
+
+    // si on a l'action deconnexion
+    if ($action == 'deconnexion') : 
+
+        flash('message', $_SESSION['nom'] . 'vous êtes déconnecté, quelle dommage ! A bientôt.');   
+        
+        // Suppression des variables de session et de la session
+        $_SESSION = array();
+        session_destroy();
+
+        // Suppression des cookies de connexion automatique
+        if (!empty($_COOKIE['email']) && !empty($_COOKIE['password'])):
+            setcookie('email', '');
+            setcookie('password', '');
+        endif;
+
+        redirection_page();
+    endif;
     
     flash('message', 'Les données ne sont pas parvenues', 'danger');
     redirection_page();
