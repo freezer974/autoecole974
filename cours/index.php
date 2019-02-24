@@ -16,10 +16,9 @@
             $_SESSION['id'] = '';
         endif;
 
-        $requete = $bdd->prepare('SELECT * FROM utilisateurs INNER JOIN roles ON roles.id = utilisateurs.id_role');
+        $requete = $bdd->prepare('SELECT u.id, u.nom, u.prenom, u.mail, r.label, u.id_role, r.id AS idRole FROM utilisateurs u INNER JOIN roles r ON r.id = u.id_role');
         $requete->execute();
         $utilisateurs = $requete->fetchAll();
-       
         
 ?>
     <div class="form-group">
