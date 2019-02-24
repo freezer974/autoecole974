@@ -124,7 +124,7 @@
                                 <?php $couleur = 'llist-group-item-light'; ?>
                                 <?php $donnees  = $horaire[$heure-1]; ?>
                                 <?php $donnees .= ($_SESSION['role'] == 'Moniteur')? ' <span class="badge text-black-50"><i class="fa fa-plus"  aria-hidden="true"></i></span>':''; ?>
-                                <?php $attribut = ($_SESSION['role'] == 'Moniteur')? "data-toggle='modal' data-target='#ajoutModal' data-datecour='$jour' data-heurecour='$heure' data-label='Cuisine' data-nom='".$_SESSION['nom']."' data-horaire='".$horaire[$heure-1]."' data-jour='".$semaine[$jour-1]."' data-voitures='".json_encode($voitures)."' data-id_utilisateur='".$_SESSION['id']."'":''; ?>
+                                <?php $attribut = ($_SESSION['role'] == 'Moniteur')? "data-toggle='modal' data-target='#ajoutModal' data-datecour='$jour' data-heurecour='$heure' data-label='Conduite' data-nom='".$_SESSION['nom']."' data-horaire='".$horaire[$heure-1]."' data-jour='".$semaine[$jour-1]."' data-voitures='".json_encode($voitures)."' data-id_utilisateur='".$_SESSION['id']."'":''; ?>
 
                                 <?php if (($coursMoniteur['dateCours'] == $jour && $coursMoniteur['heureCours'] == $heure)): ?> 
                                     <?php $dispoMoniteur = 'M : '; ?>
