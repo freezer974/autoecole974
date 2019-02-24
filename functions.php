@@ -32,7 +32,7 @@ function flash( $name = '', $message = '', $class = 'success fadeout-message' )
         elseif( !empty( $_SESSION[$name] ) && empty( $message ))
         {
             $class = !empty( $_SESSION[$name.'_class'] ) ? $_SESSION[$name.'_class'] : 'success';
-            echo '<div class="alert alert-'.$class.' alert-dismissible fade show" id="msg-flash" role="alert">'
+            echo '<div id ="message" class="alert alert-'.$class.' alert-dismissible fade show" id="msg-flash" role="alert">'
                     .$_SESSION[$name]
                     .'<button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

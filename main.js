@@ -8,6 +8,10 @@ $(document).ready(function() {
     $('#genres').select2();
     $('#series').select2();
 
+    $("#message").fadeTo(2000, 500).slideUp(500, function(){
+        $("#message").slideUp(500);
+    });
+
     $('#ajoutModal').on('show.bs.modal', function (event) {
         var a = $(event.relatedTarget); // Button that triggered the modal
         var horaire = a.data('horaire') // Extract info from data-* attributes
@@ -184,6 +188,8 @@ $(document).ready(function() {
         $(document.body).append(form);
         form.submit();
     }
+
+
 })
 
 
