@@ -179,6 +179,17 @@
 
         redirection_page();
     endif;
+
+    if (($action == 'session') && !empty($_POST['id']) && intval($_POST['id']) > 0):
+        $_SESSION['id'] = intval($_POST['id']);
+        $_SESSION['nom'] = htmlentities($_POST['nom']);
+        $_SESSION['prenom'] = htmlentities($_POST['prenom']);
+        $_SESSION['email'] = htmlentities($_POST['email']);
+        $_SESSION['role'] = ChaineAvecMajuscule($_POST['role']);
+
+        flash('message', 'Vous êtes connecté en tant que '. $_SESSION['nom'] . ' ' .  $_SESSION['prénom'] .' avec le role '.$_SESSION['role'].'.');
+        redirection_page();
+    endif;
     
     flash('message', 'Les données ne sont pas parvenues', 'danger');
     redirection_page();

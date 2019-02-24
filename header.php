@@ -64,7 +64,7 @@
                     <a class="nav-link" href="#"><?= $_SESSION['nom']; ?> <span class="font-italic small">(<?= $_SESSION['role']; ?>)</span></a>
                 </li>
                 <li class="nav-item <?= (($menu == 'deconnexion')? 'active' : ''); ?>">
-                    <form class="form-inline my-2 my-lg-0" action="#" method="POST">
+                    <form class="form-inline my-2 my-lg-0" action="/cours/action_cours.php" method="POST">
                         <input type="hidden" value='deconnexion' name='action'>
                         <button type="submit" class="btn btn-secondary">Deconnexion</button>
                     </form>

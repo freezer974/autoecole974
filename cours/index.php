@@ -11,9 +11,29 @@
         $requete = $bdd->prepare('SELECT * FROM voitures');
         $requete->execute();
         $voitures = $requete->fetchAll();
-    $_SESSION['id'] = '';
+
+        if (empty($_SESSION['id'])): 
+            $_SESSION['id'] = '';
+        endif;
+
+        $requete = $bdd->prepare('SELECT * FROM utilisateurs INNER JOIN roles ON roles.id = utilisateurs.id_role');
+        $requete->execute();
+        $utilisateurs = $requete->fetchAll();
        
+        
 ?>
+    <div class="form-group">
+        <label for="id_utilisateur">Selectionner l'utilisateur pour manipuler le planning</label>
+        <select id="id_utilisateur" name="id_utilisateur" class="form-control" required>
+            <option value="">Selectionner un role</option>
+
+            <?php foreach($utilisateurs as $utilisateur): ?>
+                <option value="<?= $utilisateur['id'] ?>" data-lastname="<?= $utilisateur['nom'] ?>" data-firstname="<?= $utilisateur['prenom'] ?>" data-email="<?= $utilisateur['mail'] ?>" data-role="<?= $utilisateur['label'] ?>"> <?= htmlentities($utilisateur['nom']) ?> - role: <?= htmlentities($utilisateur['label']) ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+
+    
 
     <?php /*if (!empty($_SESSION['id']) && !empty($_SESSION['email']) && !empty($_SESSION['role'])):*/ ?>
 

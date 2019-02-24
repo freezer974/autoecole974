@@ -148,4 +148,43 @@ $(document).ready(function() {
         modal.find('#id_cours').attr('value', id_cours);
     })
 
+    $( "#id_utilisateur" ).change(function () {
+
+        if ($(this).val() == ''){
+            return;
+        }
+      var params = [];
+      $( "select option:selected" ).each(function() {
+        params['nom'] = $(this).attr('data-lastname');
+        params['prenom'] = $(this).attr('data-firstname');
+        params['email'] = $(this).attr('data-email');
+        params['role'] = $(this).attr('data-role');
+        params['id'] = $(this).val();
+        params['action'] = 'session';
+      });
+      post_en_url("action_cours.php", params);
+    })
+
+    function post_en_url(url, parametres) {
+        //Création dynamique du formulaire
+        var form = $('<form>');
+        form.attr('method', 'POST');
+        form.attr('action', url);
+        //Ajout des paramètres sous forme de champs cachés
+        for(var cle in parametres) {
+            if(parametres.hasOwnProperty(cle)) {
+                var champCache = $('<input/>');
+                champCache.attr('type', 'hidden');
+                champCache.attr('name', cle);
+                champCache.attr('value', parametres[cle]);
+                form.append(champCache);
+            }
+        }
+        //Ajout du formulaire à la page et soumission du formulaire
+        $(document.body).append(form);
+        form.submit();
+    }
 })
+
+
+
