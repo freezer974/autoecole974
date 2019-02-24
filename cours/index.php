@@ -40,7 +40,8 @@
                 <h1>Planning de gestion des cours</h1>
             </div>
         </div>
-
+        <div class="container-fluid">
+        <div class="row">
         <?php //recuperation de tout les cours des moniteurs ?>
         <?php $requete = $bdd->prepare('SELECT c.id AS idCours, 
                                                c.label AS labelCours, 
@@ -110,79 +111,78 @@
         <?php $coursEleves = $requete->fetchAll(); ?>
         <?php $requete->closeCursor(); ?>
 
-            <?php // on extraire le résultat dans des variables differente suivant les roles ?>
-            <div class="d-flex flex-row text-center">
-            <?php $coursMoniteur = array_shift($coursMoniteurs); ?>
-            <?php $coursEleve = array_shift($coursEleves); ?>
-                <?php for($jour = 1; $jour <= count($semaine); $jour++): ?>
-                    <div class="col">
-                        <h4><?= $semaine[$jour-1];?></h4>
-                        <div class="list-group">
-                            <?php for($heure = 1; $heure <= count($horaire); $heure++): ?>
-                                <?php $reserveEleve = ''; $dispoMoniteur = ''; ?>
-                                <?php $couleur = 'llist-group-item-light'; ?>
-                                <?php $donnees  = $horaire[$heure-1]; ?>
-                                <?php $donnees .= ($_SESSION['role'] == 'Moniteur')? ' <span class="badge text-black-50"><i class="fa fa-plus"  aria-hidden="true"></i></span>':''; ?>
-                                <?php $attribut = ($_SESSION['role'] == 'Moniteur')? "data-toggle='modal' data-target='#ajoutModal' data-datecour='$jour' data-heurecour='$heure' data-label='Conduite' data-nom='".$_SESSION['nom']."' data-horaire='".$horaire[$heure-1]."' data-jour='".$semaine[$jour-1]."' data-voitures='".json_encode($voitures)."' data-id_utilisateur='".$_SESSION['id']."'":''; ?>
+        <?php // on extraire le résultat dans des variables differente suivant les roles ?>
+        <?php $coursMoniteur = array_shift($coursMoniteurs); ?>
+        <?php $coursEleve = array_shift($coursEleves); ?>
+            <?php for($jour = 1; $jour <= count($semaine); $jour++): ?>
+                <div class="col-sm-4 col-md-4 col-lg-2 mb-5">
+                    <h4><?= $semaine[$jour-1];?></h4>
+                    <div class="list-group">
+                        <?php for($heure = 1; $heure <= count($horaire); $heure++): ?>
+                            <?php $reserveEleve = ''; $dispoMoniteur = ''; ?>
+                            <?php $couleur = 'llist-group-item-light'; ?>
+                            <?php $donnees  = $horaire[$heure-1]; ?>
+                            <?php $donnees .= ($_SESSION['role'] == 'Moniteur')? ' <span class="badge text-black-50"><i class="fa fa-plus"  aria-hidden="true"></i></span>':''; ?>
+                            <?php $attribut = ($_SESSION['role'] == 'Moniteur')? "data-toggle='modal' data-target='#ajoutModal' data-datecour='$jour' data-heurecour='$heure' data-label='Conduite' data-nom='".$_SESSION['nom']."' data-horaire='".$horaire[$heure-1]."' data-jour='".$semaine[$jour-1]."' data-voitures='".json_encode($voitures)."' data-id_utilisateur='".$_SESSION['id']."'":''; ?>
 
-                                <?php if (($coursMoniteur['dateCours'] == $jour && $coursMoniteur['heureCours'] == $heure)): ?> 
-                                    <?php $dispoMoniteur = 'M : '; ?>
-                                    <?php if ($_SESSION['id'] == $coursMoniteur['idUtilisateur']): ?>
-                                        <?php $dispoMoniteur .=  'vous'; ?>
-                                        <?php $dispoMoniteur .= ' <span class="badge text-danger"><i class="fa fa-times"  aria-hidden="true"></i></span>'; ?>
-                                        <?php if ($coursMoniteur['dispoCours'] == 0): ?>
-                                            <?php // mets la span en début de phrase ?>
-                                            <?php $couleur = 'list-group-item-success'; ?>
-                                            <?php $attribut = "data-toggle='modal' data-target='#annuleModal' data-datecour='$jour' data-heurecour='$heure' data-label='".$coursMoniteur['labelCours']."' data-nom='".$_SESSION['nom']."' data-horaire='".$horaire[$heure-1]."' data-jour='".$semaine[$jour-1]."' data-id='".$coursMoniteur['idCours']."'"; ?>
-                                        <?php endif; ?>
-                                    <?php else: ?>
-                                        <?php $dispoMoniteur .= $coursMoniteur['nomUtilisateur']; ?>
-                                        <?php $couleur = 'list-group-item-info'; ?>
-                                        <?php $attribut = ''; ?>
+                            <?php if (($coursMoniteur['dateCours'] == $jour && $coursMoniteur['heureCours'] == $heure)): ?> 
+                                <?php $dispoMoniteur = 'M : '; ?>
+                                <?php if ($_SESSION['id'] == $coursMoniteur['idUtilisateur']): ?>
+                                    <?php $dispoMoniteur .=  'vous'; ?>
+                                    <?php $dispoMoniteur .= ' <span class="badge text-danger"><i class="fa fa-times"  aria-hidden="true"></i></span>'; ?>
+                                    <?php if ($coursMoniteur['dispoCours'] == 0): ?>
+                                        <?php // mets la span en début de phrase ?>
+                                        <?php $couleur = 'list-group-item-success'; ?>
+                                        <?php $attribut = "data-toggle='modal' data-target='#annuleModal' data-datecour='$jour' data-heurecour='$heure' data-label='".$coursMoniteur['labelCours']."' data-nom='".$_SESSION['nom']."' data-horaire='".$horaire[$heure-1]."' data-jour='".$semaine[$jour-1]."' data-id='".$coursMoniteur['idCours']."'"; ?>
                                     <?php endif; ?>
+                                <?php else: ?>
+                                    <?php $dispoMoniteur .= $coursMoniteur['nomUtilisateur']; ?>
+                                    <?php $couleur = 'list-group-item-info'; ?>
+                                    <?php $attribut = ''; ?>
                                 <?php endif; ?>
-                                <?php if ($coursEleve['dateCours'] == $jour && $coursEleve['heureCours'] == $heure): ?>
-                                    <?php $reserveEleve = 'E : '; ?>
-                                    <?php if ($_SESSION['id'] == $coursEleve['idUtilisateur']): ?>
-                                            <?php $couleur = 'list-group-item-danger'; ?>
-                                            <?php $reserveEleve .=  'vous'; ?>
-                                            <?php $reserveEleve .=  ' <span class="badge text-danger"><i class="fa fa-times"  aria-hidden="true"></i></span>' ?>
-                                            <?php $attribut = "data-toggle='modal' data-target='#annuleReservationModal' data-datecour='$jour' data-heurecour='$heure' data-label='".$coursEleve['labelCours']."' data-nom='".$_SESSION['nom']."' data-nommoniteur='".$coursMoniteur['nomUtilisateur']."' data-id_eleve='' data-nom_eleve='' data-horaire='".$horaire[$heure-1]."' data-jour='".$semaine[$jour-1]."' data-id_cours='".$coursEleve['idCours']."'"; ?>
-                                    <?php else: ?>
-                                        <?php $reserveEleve .= $coursEleve['nomUtilisateur']; ?>
-                                        <?php $couleur = 'list-group-item-info'; ?>
-                                        <?php $attribut = ''; ?>
-                                    <?php endif; ?>
+                            <?php endif; ?>
+                            <?php if ($coursEleve['dateCours'] == $jour && $coursEleve['heureCours'] == $heure): ?>
+                                <?php $reserveEleve = 'E : '; ?>
+                                <?php if ($_SESSION['id'] == $coursEleve['idUtilisateur']): ?>
+                                        <?php $couleur = 'list-group-item-danger'; ?>
+                                        <?php $reserveEleve .=  'vous'; ?>
+                                        <?php $reserveEleve .=  ' <span class="badge text-danger"><i class="fa fa-times"  aria-hidden="true"></i></span>' ?>
+                                        <?php $attribut = "data-toggle='modal' data-target='#annuleReservationModal' data-datecour='$jour' data-heurecour='$heure' data-label='".$coursEleve['labelCours']."' data-nom='".$_SESSION['nom']."' data-nommoniteur='".$coursMoniteur['nomUtilisateur']."' data-id_eleve='' data-nom_eleve='' data-horaire='".$horaire[$heure-1]."' data-jour='".$semaine[$jour-1]."' data-id_cours='".$coursEleve['idCours']."'"; ?>
+                                <?php else: ?>
+                                    <?php $reserveEleve .= $coursEleve['nomUtilisateur']; ?>
+                                    <?php $couleur = 'list-group-item-info'; ?>
+                                    <?php $attribut = ''; ?>
                                 <?php endif; ?>
-                                <?php if (($coursMoniteur['dispoCours'] == 0) && ($_SESSION['role'] == 'Eleve') && !empty($dispoMoniteur)): ?>
-                                    <?php $reserveEleve = 'Dispo'; ?>
-                                    <?php $couleur = 'list-group-item-success'; ?>
-                                    <?php $attribut = "data-toggle='modal' data-target='#reserveModal' data-datecour='$jour' data-heurecour='$heure' data-label='".$coursMoniteur['labelCours']."' data-nom='".$_SESSION['nom']."' data-nomMoniteur='".$coursMoniteur['nomUtilisateur']."' data-horaire='".$horaire[$heure-1]."' data-jour='".$semaine[$jour-1]."' data-id='".$coursMoniteur['idCours']."'"; ?>
-                                <?php endif; ?>
-                                <?php if (($coursMoniteur['dispoCours'] == 1) && ($_SESSION['role'] == 'Moniteur') && !empty($dispoMoniteur) && ($_SESSION['id'] == $coursMoniteur['idUtilisateur'])): ?>
-                                    <?php $couleur = 'list-group-item-warning'; ?>
-                                    <?php $attribut = "data-toggle='modal' data-target='#annuleReservationModal' data-datecour='$jour' data-heurecour='$heure' data-label='".$coursMoniteur['labelCours']."' data-nom='".$_SESSION['nom']."' data-nommoniteur='".$coursMoniteur['nomUtilisateur']."' data-id_eleve='".$coursEleve['idUtilisateur']."' data-nom_eleve='".$coursEleve['nomUtilisateur']."' data-horaire='".$horaire[$heure-1]."' data-jour='".$semaine[$jour-1]."' data-id_cours='".$coursMoniteur['idCours']."'"; ?>
-                                <?php endif; ?>
+                            <?php endif; ?>
+                            <?php if (($coursMoniteur['dispoCours'] == 0) && ($_SESSION['role'] == 'Eleve') && !empty($dispoMoniteur)): ?>
+                                <?php $reserveEleve = 'Dispo'; ?>
+                                <?php $couleur = 'list-group-item-success'; ?>
+                                <?php $attribut = "data-toggle='modal' data-target='#reserveModal' data-datecour='$jour' data-heurecour='$heure' data-label='".$coursMoniteur['labelCours']."' data-nom='".$_SESSION['nom']."' data-nomMoniteur='".$coursMoniteur['nomUtilisateur']."' data-horaire='".$horaire[$heure-1]."' data-jour='".$semaine[$jour-1]."' data-id='".$coursMoniteur['idCours']."'"; ?>
+                            <?php endif; ?>
+                            <?php if (($coursMoniteur['dispoCours'] == 1) && ($_SESSION['role'] == 'Moniteur') && !empty($dispoMoniteur) && ($_SESSION['id'] == $coursMoniteur['idUtilisateur'])): ?>
+                                <?php $couleur = 'list-group-item-warning'; ?>
+                                <?php $attribut = "data-toggle='modal' data-target='#annuleReservationModal' data-datecour='$jour' data-heurecour='$heure' data-label='".$coursMoniteur['labelCours']."' data-nom='".$_SESSION['nom']."' data-nommoniteur='".$coursMoniteur['nomUtilisateur']."' data-id_eleve='".$coursEleve['idUtilisateur']."' data-nom_eleve='".$coursEleve['nomUtilisateur']."' data-horaire='".$horaire[$heure-1]."' data-jour='".$semaine[$jour-1]."' data-id_cours='".$coursMoniteur['idCours']."'"; ?>
+                            <?php endif; ?>
 
-                                <?php if (!empty($dispoMoniteur) || !empty($reserveEleve)): ?>
-                                    <?php $donnees = ''; ?>
-                                    <?php $donnees .= (!empty($dispoMoniteur))? '<div class="small text-success" id=\'moniteur\'>'.$dispoMoniteur.'</div>':''; ?>
-                                    <?php $donnees .= (!empty($dispoMoniteur))? '<div  class="small" id=\'eleve\'>'. $reserveEleve .'</div>':''; ?> 
-                                <?php endif; ?>
+                            <?php if (!empty($dispoMoniteur) || !empty($reserveEleve)): ?>
+                                <?php $donnees = '<div class="small text-dark" id=\'horaire\'>'.$horaire[$heure-1].'</div>'; ?>
+                                <?php $donnees .= (!empty($dispoMoniteur))? '<div class="small text-success" id=\'moniteur\'>'.$dispoMoniteur.'</div>':''; ?>
+                                <?php $donnees .= (!empty($dispoMoniteur))? '<div  class="small" id=\'eleve\'>'. $reserveEleve .'</div>':''; ?> 
+                            <?php endif; ?>
 
-                                <a class="list-group-item list-group-item-action <?= $couleur; ?> p-2" <?= $attribut; ?>><?= $donnees; ?></a>
-                                <?php if (($coursMoniteur['dateCours'] == $jour && $coursMoniteur['heureCours'] == $heure)): ?> 
-                                    <?php $coursMoniteur = array_shift($coursMoniteurs); ?>
-                                <?php endif; ?>
-                                <?php if ($coursEleve['dateCours'] == $jour && $coursEleve['heureCours'] == $heure): ?>
-                                    <?php $coursEleve = array_shift($coursEleves); ?>
-                                <?php endif; ?>
-                            <?php endfor; ?>
-                        </div>
-                    </div> 
-                <?php endfor; ?>
-            </div>
-                    
+                            <a class="list-group-item list-group-item-action <?= $couleur; ?> p-2" <?= $attribut; ?>><?= $donnees; ?></a>
+                            <?php if (($coursMoniteur['dateCours'] == $jour && $coursMoniteur['heureCours'] == $heure)): ?> 
+                                <?php $coursMoniteur = array_shift($coursMoniteurs); ?>
+                            <?php endif; ?>
+                            <?php if ($coursEleve['dateCours'] == $jour && $coursEleve['heureCours'] == $heure): ?>
+                                <?php $coursEleve = array_shift($coursEleves); ?>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                    </div>
+                </div> 
+            <?php endfor; ?>
+        </div>
+                
         <?php /* else: ?>
             <span class="text-muted">Vous devez être connecté pour voir le planning</span>
         <?php endif; */?>
@@ -298,6 +298,9 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
  <?php
     require_once('../footer.php');
 ?>
