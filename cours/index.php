@@ -28,7 +28,7 @@
             <option value="">Selectionner un role</option>
 
             <?php foreach($utilisateurs as $utilisateur): ?>
-                <option value="<?= $utilisateur['id'] ?>" data-lastname="<?= $utilisateur['nom'] ?>" data-firstname="<?= $utilisateur['prenom'] ?>" data-email="<?= $utilisateur['mail'] ?>" data-role="<?= $utilisateur['label'] ?>"> <?= htmlentities($utilisateur['nom']) ?> - role: <?= htmlentities($utilisateur['label']) ?></option>
+                <option value="<?= $utilisateur['id'] ?>" data-lastname="<?= $utilisateur['nom'] ?>" data-firstname="<?= $utilisateur['prenom'] ?>" data-email="<?= $utilisateur['mail'] ?>" data-role="<?= $utilisateur['label'] ?>"> <?= htmlentities($utilisateur['nom']) ?> <?= htmlentities($utilisateur['prenom']) ?> - role: <?= htmlentities($utilisateur['label']) ?></option>
             <?php endforeach; ?>
         </select>
     </div>
