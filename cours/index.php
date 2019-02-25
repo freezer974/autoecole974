@@ -118,7 +118,7 @@
             <?php $coursMoniteur = array_shift($coursMoniteurs); ?>
             <?php $coursEleve = array_shift($coursEleves); ?>
                 <?php for($jour = 1; $jour <= count($semaine); $jour++): ?>
-                    <div class="col-sm-4 col-md-4 col-lg-2 mb-5">
+                    <div class="col-sm-4 col-md-4 col-lg-2 mb-5 text-center">
                         <h4><?= $semaine[$jour-1];?></h4>
                         <div class="list-group">
                             <?php for($heure = 1; $heure <= count($horaire); $heure++): ?>
